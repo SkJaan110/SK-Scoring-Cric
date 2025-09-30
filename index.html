@@ -1,7 +1,44 @@
-<!-- Firebase SDKs (Compat version for auth + db easy use) -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK Scoring Cric - Login</title>
+</head>
+<body>
+  <h2>SK Scoring Cric - Login</h2>
 
-<!-- Config -->
-<script src="firebase-config.js"></script>
+  <!-- Email/Password Signup -->
+  <div>
+    <h3>Signup</h3>
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
+  </div>
+
+  <!-- Email/Password Login -->
+  <div>
+    <h3>Login</h3>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="signIn()">Login</button>
+  </div>
+
+  <!-- Google Login -->
+  <div>
+    <h3>Or</h3>
+    <button onclick="googleLogin()">Login with Google</button>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+  <!-- Config -->
+  <script src="firebase-config.js"></script>
+
+  <!-- App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
