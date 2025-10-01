@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>My Tournament</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>My Tournaments</h1></div></header>
+<main class="dashboard">
+  <form id="t_form_quick" onsubmit="(function(e){ e.preventDefault(); const title=document.getElementById('t_title_quick').value.trim(); const type=document.getElementById('t_type_quick').value; if(title){ createTournamentInline({title,type,format:'T20'}).then(()=>{ document.getElementById('t_title_quick').value=''; }); } }) (event)">
+    <div class="form-row"><input id="t_title_quick" placeholder="Tournament title" required></div>
+    <div class="form-row"><select id="t_type_quick"><option>League</option><option>Series</option></select></div>
+    <div class="form-row"><button class="btn" type="submit">+ Add Tournament</button></div>
+  </form>
+  <h3>Your Tournaments</h3>
+  <div id="myTournamentsList" class="list-grid"></div>
+  <br><button class="btn" onclick="location.href='profile.html'">⬅ Back</button>
+</main>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>

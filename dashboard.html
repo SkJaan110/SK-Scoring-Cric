@@ -8,22 +8,22 @@
   <div class="brand"><div class="logo">SK</div><h1>SK Scoring Cric</h1></div>
   <div class="sub">Live matches • manage tournaments, teams & players</div>
   <div class="navbar">
-    <button onclick="goPage('dashboard.html')">Home</button>
-    <button onclick="goPage('createTournament.html')">Create Tournament</button>
-    <button onclick="goPage('createMatch.html')">Create Match</button>
-    <button onclick="goPage('createTeam.html')">Create Team</button>
-    <button onclick="goPage('createPlayer.html')">Create Player</button>
-    <button onclick="goPage('demo.html')">Demo</button>
-    <button onclick="goPage('profile.html')">Profile</button>
+    <button onclick="location.href='dashboard.html'">Home</button>
+    <button onclick="location.href='createTournament.html'">Create Tournament</button>
+    <button onclick="location.href='createMatch.html'">Create Match</button>
+    <button onclick="location.href='createTeam.html'">Create Team</button>
+    <button onclick="location.href='createPlayer.html'">Create Player</button>
+    <button onclick="location.href='myTournament.html'">My Tournament</button>
+    <button onclick="location.href='profile.html'">Profile</button>
   </div>
 </header>
 
 <main class="dashboard">
   <h2>Ongoing Matches</h2>
-  <div id="matches-list"><p>Loading...</p></div>
+  <div id="matches-list" class="list-grid"><p class="small">Loading matches…</p></div>
   <h3>🎨 Theme</h3>
   <input type="color" id="colorPicker" value="#141e30" onchange="document.body.style.background=this.value"/>
-  <br/><br/><button class="btn" onclick="logout()">Logout</button>
+  <br/><br/><button class="btn" onclick="logOut()">Logout</button>
 </main>
 
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
@@ -31,25 +31,4 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 <script src="firebase-config.js"></script>
 <script src="app.js"></script>
-
-<script>
-function goPage(p){ location.href=p; }
-function logout(){ firebase.auth().signOut().then(()=>location.href='index.html'); }
-
-firebase.auth().onAuthStateChanged(user=>{
-  if(!user) location.href='index.html';
-  const path = 'users/'+user.uid+'/matches';
-  const list = document.getElementById('matches-list');
-  firebase.database().ref(path).on('value', snap=>{
-    list.innerHTML = '';
-    if(!snap.exists()){ list.innerHTML='<p>No matches yet</p>'; return; }
-    snap.forEach(ch=>{
-      const m=ch.val();
-      const div=document.createElement('div'); div.className='match-card';
-      div.innerHTML='<b>'+m.teamA+'</b> vs <b>'+m.teamB+'</b><br>Overs: '+(m.overs||'--')+' • Status: '+(m.status||'--');
-      list.appendChild(div);
-    });
-  });
-});
-</script>
 </body></html>

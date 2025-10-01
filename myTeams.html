@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>My Teams</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>My Teams</h1></div></header>
+<main class="dashboard">
+  <div class="form-row"><input id="teamNameQuick" placeholder="New team name"><button class="btn" onclick="(function(){ const n=document.getElementById('teamNameQuick').value.trim(); if(n) createTeamInline(n,'').then(()=>document.getElementById('teamNameQuick').value=''); })()">+ Add</button></div>
+  <h3>Your Teams</h3>
+  <div id="myTeamsList" class="list-grid"></div>
+  <br><button class="btn" onclick="location.href='profile.html'">⬅ Back</button>
+</main>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>

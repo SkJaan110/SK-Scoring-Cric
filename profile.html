@@ -1,38 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile - SK Scoring Cric</title>
-  <link rel="stylesheet" href="style.css">
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Profile</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>Profile</h1></div></header>
+<main class="dashboard">
+  <div id="profileBox" class="item-card">
+    <div><strong id="userName">Loading...</strong></div>
+    <div class="small" id="userEmail"></div>
+  </div>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-  <script src="firebase-config.js"></script>
-  <script src="app.js" defer></script>
-</head>
-<body>
-  <header>
-    <h1 class="logo">🏏 SK Scoring Cric</h1>
-  </header>
+  <div class="list-grid">
+    <button class="btn" onclick="location.href='myTeams.html'">My Teams</button>
+    <button class="btn" onclick="location.href='myPlayers.html'">My Players</button>
+    <button class="btn" onclick="location.href='myTournament.html'">My Tournament</button>
+  </div>
 
-  <main class="profile-container">
-    <h2>My Profile</h2>
-    <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
-    <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
-
-    <div class="profile-links">
-      <a href="myTeams.html" class="btn">My Teams</a>
-      <a href="myPlayers.html" class="btn">My Players</a>
-      <a href="myTournament.html" class="btn">My Tournament</a>
-    </div>
-
-    <button onclick="logOut()" class="btn danger">Logout</button>
-  </main>
-
-  <footer>
-    <p>⚡ SK Scoring Cric © 2025</p>
-  </footer>
-</body>
-</html>
+  <br><button class="btn" onclick="logOut()">Logout</button>
+</main>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>

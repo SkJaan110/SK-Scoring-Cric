@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>My Players</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>My Players</h1></div></header>
+<main class="dashboard">
+  <form id="player_form_quick" onsubmit="(function(e){ e.preventDefault(); const name=document.getElementById('p_name_quick').value.trim(); const role=document.getElementById('p_role_quick').value; if(name){ createPlayerInline({name,role}).then(()=>{ document.getElementById('p_name_quick').value=''; }); } }) (event)">
+    <div class="form-row"><input id="p_name_quick" placeholder="Player name" required></div>
+    <div class="form-row"><select id="p_role_quick"><option>Batsman</option><option>Bowler</option><option>All Rounder</option><option>Wicket Keeper</option></select></div>
+    <div class="form-row"><button class="btn" type="submit">+ Add Player</button></div>
+  </form>
+  <h3>Your Players</h3>
+  <div id="myPlayersList" class="list-grid"></div>
+  <br><button class="btn" onclick="location.href='profile.html'">⬅ Back</button>
+</main>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>

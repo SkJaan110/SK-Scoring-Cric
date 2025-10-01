@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Create Tournament</title><link rel="stylesheet" href="style.css"/></head><body>
 <header class="site-header"><div class="brand"><div class="logo">SK</div><h1>Create Tournament</h1></div></header>
 <main class="dashboard">
-  <form id="t_form" onsubmit="createTournament(event)">
+  <form id="t_form" onsubmit="pageCreateTournament(event)">
     <div class="form-row"><label>Title</label><input id="t_title" required></div>
     <div class="form-row"><label>Type</label><select id="t_type"><option>League</option><option>Series</option></select></div>
     <div class="form-row"><label>Format</label><select id="t_format"><option>T20</option><option>50 Overs</option><option>4 Day</option><option>Test</option></select></div>
@@ -9,10 +9,9 @@
     <div class="form-row"><label>City</label><input id="t_city"></div>
     <div class="form-row"><label>Ball</label><select id="t_ball"><option>Hard ball</option><option>Tape ball</option><option>Tennis ball</option><option>Other</option></select></div>
     <div class="form-row"><label>Organiser</label><input id="t_org"></div>
-    <div class="form-row"><button class="btn primary" type="submit">Create Tournament</button> <button type="button" onclick="goBack()">Cancel</button></div>
+    <div class="form-row"><button class="btn primary" type="submit">Create Tournament</button> <button type="button" onclick="location.href='dashboard.html'">Cancel</button></div>
   </form>
 </main>
-<script>function goBack(){location.href='dashboard.html'}</script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>

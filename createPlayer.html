@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Create Player</title><link rel="stylesheet" href="style.css"/></head><body>
 <header class="site-header"><div class="brand"><div class="logo">SK</div><h1>Create Player</h1></div></header>
 <main class="dashboard">
-  <form id="player_form" onsubmit="createPlayer(event)">
+  <form id="player_form" onsubmit="pageCreatePlayer(event)">
     <div class="form-row"><label>Name</label><input id="p_name" required></div>
     <div class="form-row"><label>Role</label><select id="p_role"><option>Batsman</option><option>Bowler</option><option>All Rounder</option><option>Wicket Keeper</option></select></div>
     <div class="form-grid">
@@ -11,10 +11,9 @@
       <div class="form-row"><label>Bowling type</label><select id="p_bowlingtype"><option>Slow</option><option>Medium</option><option>Fast</option></select></div>
     </div>
     <div class="form-row"><label>Photo URL (optional)</label><input id="p_photo_url" placeholder="https://..."></div>
-    <div class="form-row"><button class="btn primary" type="submit">Create Player</button> <button type="button" onclick="goBack()">Cancel</button></div>
+    <div class="form-row"><button class="btn primary" type="submit">Create Player</button> <button type="button" onclick="location.href='dashboard.html'">Cancel</button></div>
   </form>
 </main>
-<script>function goBack(){location.href='dashboard.html'}</script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
