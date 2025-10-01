@@ -148,3 +148,21 @@ window.addEventListener('load', ()=>{
   if(document.getElementById('m_teamA')) populateTeamSelects();
   if(document.getElementById('myTournamentsList')) loadMyData();
 });
+
+// ----------- Auto Redirect based on Auth -----------
+auth.onAuthStateChanged((user) => {
+  const path = window.location.pathname;
+
+  if (!user) {
+    // User not logged in → allow only index.html
+    if (!path.includes("index.html")) {
+      window.location.href = "index.html";
+    }
+  } else {
+    // User logged in → stop redirecting back to dashboard unnecessarily
+    // If user is on index.html, send to dashboard
+    if (path.includes("index.html")) {
+      window.location.href = "dashboard.html";
+    }
+  }
+});
