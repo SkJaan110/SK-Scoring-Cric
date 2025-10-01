@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tournament - SK Scoring Cric</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <header>
+    <h1 class="logo">🏏 My Tournament</h1>
+  </header>
+
+  <main>
+    <h2>Create a Tournament</h2>
+    <input type="text" id="tournamentName" placeholder="Tournament name">
+    <select id="tournamentType">
+      <option>League</option>
+      <option>Series</option>
+      <option>Knockout</option>
+    </select>
+    <button onclick="createTournament()">Add Tournament</button>
+
+    <h3>Your Tournaments</h3>
+    <ul id="tournamentList"></ul>
+
+    <a href="profile.html" class="btn">⬅ Back to Profile</a>
+  </main>
+
+  <script>
+    const db = firebase.database();
+
+    function createTournament() {
+      const user = firebase.auth().currentUser;
+      const name = document.getElementById("tournamentName").value.trim();
+      const type = document.getElementById("tournamentType").value;
+      if (!user || !name) return alert("Login first and enter tournament name!");
+
+      const tRef = db.ref("users/" + user.uid + "/tournaments").push();
+      tRef.set({ name, type });
+      document.getElementById("tournamentName").value = "";
+    }
+
+    function loadTournaments() {
+      const user = firebase.auth().currentUser;
+      if (!user) return;
+
+      const list = document.getElementById("tournamentList");
+      db.ref("users/" + user.uid + "/tournaments").on("value", (snapshot) => {
+        list.innerHTML = "";
+        snapshot.forEach((child) => {
+          const li = document.createElement("li");
+          li.textContent = child.val().name + " (" + child.val().type + ")";
+          list.appendChild(li);
+        });
+      });
+    }
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) loadTournaments();
+    });
+  </script>
+</body>
+</html>
