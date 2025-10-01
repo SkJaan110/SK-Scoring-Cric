@@ -1,0 +1,1 @@
+SK Scoring Cric - Starter package with Firebase Realtime DB. Replace firebase-config.js placeholders with your project config and deploy to GitHub Pages.

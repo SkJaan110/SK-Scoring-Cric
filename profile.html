@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Profile</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>Profile</h1></div></header>
+<main class="dashboard">
+  <h3>My Tournaments</h3>
+  <div id="myTournamentsList"><p>Loading...</p></div>
+  <h3>My Teams</h3>
+  <div id="myTeamsList"><p>Loading...</p></div>
+  <h3>My Players</h3>
+  <div id="myPlayersList"><p>Loading...</p></div>
+  <br/><button class="btn" onclick="goBack()">Back</button>
+</main>
+<script>function goBack(){location.href='dashboard.html'}</script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>

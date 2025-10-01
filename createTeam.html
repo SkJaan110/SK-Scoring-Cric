@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Create Team</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>Create Team</h1></div></header>
+<main class="dashboard">
+  <form id="team_form" onsubmit="createTeam(event)">
+    <div class="form-row"><label>Team Name</label><input id="team_name" required></div>
+    <div class="form-row"><label>Logo URL (optional)</label><input id="team_logo_url" placeholder="https://..."></div>
+    <div class="form-row"><button class="btn primary" type="submit">Create Team</button> <button type="button" onclick="goBack()">Cancel</button></div>
+  </form>
+</main>
+<script>function goBack(){location.href='dashboard.html'}</script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>

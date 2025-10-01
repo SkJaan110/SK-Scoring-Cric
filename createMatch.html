@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Create Match</title><link rel="stylesheet" href="style.css"/></head><body>
+<header class="site-header"><div class="brand"><div class="logo">SK</div><h1>Create Match</h1></div></header>
+<main class="dashboard">
+  <form id="match_form" onsubmit="createMatch(event)">
+    <div class="form-row"><label>Team A</label><select id="m_teamA"></select></div>
+    <div class="form-row"><label>Team B</label><select id="m_teamB"></select></div>
+    <div class="form-row"><label>Overs</label><input id="m_overs" type="number" min="1" max="100" value="20"></div>
+    <div class="form-row"><button class="btn primary" type="submit">Create Match</button> <button type="button" onclick="goBack()">Cancel</button></div>
+  </form>
+</main>
+<script>function goBack(){location.href='dashboard.html'}</script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+</body></html>
