@@ -3,33 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Dashboard - SK Scoring Cric</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Welcome to SK Scoring Cric</h2>
-  <p id="user-info"></p>
-  <button onclick="logout()">Logout</button>
+  <header>
+    <h1>🏏 SK Scoring Cric</h1>
+    <p class="tagline">Live Matches Running</p>
+  </header>
 
-  <!-- Firebase SDKs -->
+  <div class="dashboard">
+    <h2>Ongoing Matches</h2>
+    <div id="matches-list">
+      <!-- Matches dynamically yahan load honge -->
+    </div>
+
+    <!-- Color Picker -->
+    <h3>🎨 Pick Theme Color</h3>
+    <input type="color" id="colorPicker" value="#1e3c72" onchange="changeThemeColor(this.value)">
+    
+    <br><br>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
   <script src="firebase-config.js"></script>
 
   <script>
     const auth = firebase.auth();
+    const db = firebase.database();
 
+    // User check
     auth.onAuthStateChanged((user) => {
-      if (user) {
-        document.getElementById("user-info").innerText = "Logged in as: " + user.email;
-      } else {
+      if (!user) {
         window.location.href = "index.html";
+      } else {
+        loadMatches();
       }
     });
 
+    // Matches load function
+    function loadMatches() {
+      const matchesList = document.getElementById("matches-list");
+      matchesList.innerHTML = "";
+
+      db.ref("matches").on("value", (snapshot) => {
+        matchesList.innerHTML = "";
+        snapshot.forEach((child) => {
+          const match = child.val();
+          const div = document.createElement("div");
+          div.className = "match-card";
+          div.innerHTML = `<b>${match.teamA}</b> vs <b>${match.teamB}</b><br>
+                          Score: ${match.score || "Not started"}`;
+          matchesList.appendChild(div);
+        });
+      });
+    }
+
+    // Logout
     function logout() {
       auth.signOut().then(() => {
         window.location.href = "index.html";
       });
+    }
+
+    // Theme Color Change
+    function changeThemeColor(color) {
+      document.body.style.background = color;
     }
   </script>
 </body>
