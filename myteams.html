@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Teams - SK Scoring Cric</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <header>
+    <h1 class="logo">🏏 My Teams</h1>
+  </header>
+
+  <main>
+    <h2>Create a Team</h2>
+    <input type="text" id="teamName" placeholder="Enter team name">
+    <button onclick="createTeam()">Add Team</button>
+
+    <h3>Your Teams</h3>
+    <ul id="teamList"></ul>
+
+    <a href="profile.html" class="btn">⬅ Back to Profile</a>
+  </main>
+
+  <script>
+    const db = firebase.database();
+
+    function createTeam() {
+      const user = firebase.auth().currentUser;
+      const name = document.getElementById("teamName").value.trim();
+      if (!user || !name) return alert("Login first and enter team name!");
+
+      const teamRef = db.ref("users/" + user.uid + "/teams").push();
+      teamRef.set({ name });
+      document.getElementById("teamName").value = "";
+    }
+
+    function loadTeams() {
+      const user = firebase.auth().currentUser;
+      if (!user) return;
+
+      const list = document.getElementById("teamList");
+      db.ref("users/" + user.uid + "/teams").on("value", (snapshot) => {
+        list.innerHTML = "";
+        snapshot.forEach((child) => {
+          const li = document.createElement("li");
+          li.textContent = child.val().name;
+          list.appendChild(li);
+        });
+      });
+    }
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) loadTeams();
+    });
+  </script>
+</body>
+</html>
